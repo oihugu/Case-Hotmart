@@ -23,7 +23,8 @@ def m_build_model_regression(input_shape): #Função Geradora / Factory Function
         optimizer = tf.keras.optimizers.RMSprop(hp.Choice('RMSprop', values=[0.001, 0.01, 0.1]))
         model.compile(loss='mse',
                       optimizer=optimizer,
-                      metrics=[keras.metrics.MeanSquaredLogarithmicError(name='msle')]) # Usando MSLE pois não temos tanta precisão nos dados, mas assim podemos ter uma ideia 
+                      metrics=[keras.metrics.MeanSquaredLogarithmicError(name='msle'),
+                               keras.metrics.MeanAbsoluteError(name='mae')]) # Usando MSLE pois não temos tanta precisão nos dados, mas assim podemos ter uma ideia 
         return model
     return build_model_regression
 
